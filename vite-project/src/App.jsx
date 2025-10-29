@@ -112,6 +112,68 @@ function App() {
     }
   };
 
+
+
+function DeveloperButton() {
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <div className="developer-section">
+      <button className="about-dev-btn" onClick={() => setShowModal(true)}>
+        About Developer
+      </button>
+
+      {showModal && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-btn" onClick={() => setShowModal(false)}>
+              ✖
+            </button>
+            <h2>About PrepWise</h2>
+            <p>
+              <strong>PrepWise</strong> is a personalized meal recommendation and
+              health tracking system designed to provide intelligent, data-driven
+              dietary suggestions. It combines <b>FastAPI</b>, <b>MongoDB</b>, and
+              <b>React.js</b> to securely handle user data, calculate BMI, and
+              deliver tailored meal plans that support healthy living.
+            </p>
+            <hr />
+            <img
+              src="C:\Users\sagni\Downloads\WhatsApp Image 2025-10-30 at 3.00.01 AM.jpeg"
+              alt="Sagnik Bhattacharyya"
+              className="dev-photo"
+            />
+            <h3>Created by Sagnik Bhattacharyya</h3>
+            <p>
+              3rd Year Engineering Student, Electronics and Communication
+              Engineering<br />
+              Institute of Engineering and Management, Kolkata, India.
+            </p>
+            <p>
+              Passionate about building intelligent systems that combines AI and
+              database management to improve daily life.
+            </p>
+            <div className="social-links">
+              
+              <a
+                href="https://github.com/SAGNIK890"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+              <a href="mailto:sagnikbhattacharyya82@gmail.com">Gmail</a>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+
+
   
   const renderContent = () => {
     if (authPage === "welcome") {
@@ -124,8 +186,8 @@ function App() {
             type="video/mp4"
           />
         </video>
-          <h1 className="title">Welcome to PrepWise</h1>
-          <p className="tagline">Track your health & personalize your meals</p>
+          <h1 className="titlee">Welcome to PrepWise</h1>
+          <p className="taglinee">Track your health & personalize your meals</p>
           <button className="btn" onClick={() => setAuthPage("signIn")}>
             Sign In
           </button>
@@ -228,7 +290,7 @@ function App() {
 
         <div className="content">
           <h1 className="title">PrepWise</h1>
-          <p className="tagline"> Let's Get Your Macros Sorted </p>
+          <p className="tagline"> Let's Get Your Macros Sorted! </p>
 
           <form className="form" onSubmit={handleAnalyze}>
             <input
@@ -294,7 +356,7 @@ function App() {
   target="_blank"
   rel="noopener noreferrer"
 >
-  💬 Chat with us
+Connect with us
 </a>
 
         </div>
@@ -380,11 +442,11 @@ function App() {
         rel="noopener noreferrer"
         className="whatsapp-float"
       >
-        💬 Chat on WhatsApp
+      Connect with us
       </a>
 
   <div className="ai-coach">
-  <h4>🤖 PrepWise Assistant</h4>
+  <h4>PrepWise Assistant</h4>
   <button className="chat-btn" onClick={() => setShowChat(!showChat)}>
     {showChat ? "Hide" : "Chat"}
   </button>
