@@ -17,6 +17,10 @@ function App() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
+fetch(`${API_URL}/ping`)
+
   
   const handleLogin = async (e) => {
     e.preventDefault();
