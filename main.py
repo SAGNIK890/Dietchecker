@@ -12,16 +12,20 @@ from pymongo import MongoClient
 import uvicorn
 from models import AnalyzeRequest
 from auth import verify_password, create_access_token 
+from dotenv import load_dotenv
+
+load_dotenv()
+import os
 
 
-SECRET_KEY = "d4f3a9b2c1e68547f9a2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8091a2b3c4d5e"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM", "HS256")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(
+    os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")
+)
 
-
-
-MONGO_URI = "mongodb://localhost:27017/"
-DB_NAME = "Prepwise"
+MONGO_URI = os.getenv("MONGO_URI")
+DB_NAME = os.getenv("DB_NAME", "Prepwise")
 
 
 class AnalyzeRequest(BaseModel):
