@@ -95,7 +95,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 
-db = {
+db1 = {
     "alice": {
         "username": "alice",
         "full_name": "Alice Doe",
@@ -125,7 +125,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         raise credentials_exception
 
  
-    user = get_user(db, username=token_data.username)
+    user = get_user(db1, username=token_data.username)
     if user is None:
         raise credentials_exception
     return user
@@ -164,7 +164,7 @@ app = FastAPI(title="PrepWise Backend", lifespan=lifespan)
 
 @app.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
-    user = authenticate_user(db, form_data.username, form_data.password)
+    user = authenticate_user(db1, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -180,7 +180,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 
 @app.post("/signup", response_model=User)
 async def signup(user: UserSignup):
-    if user.username in db:
+    if user.username in db1:
         raise HTTPException(status_code=400, detail="Username already registered")
 
     hashed_pw = get_hashed_password(user.password)
@@ -192,7 +192,7 @@ async def signup(user: UserSignup):
         disabled=user.disabled,
     )
 
-    db[user.username] = new_user.model_dump()
+    db1[user.username] = new_user.model_dump()
     return User(**new_user.model_dump())
 
 
